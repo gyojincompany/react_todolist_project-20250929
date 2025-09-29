@@ -2,7 +2,7 @@ import "./TodoList.css"
 import TodoItem from "./TodoItem";
 import { useState } from "react";
 
-function TodoList({todo, onUpdate}) {
+function TodoList({todo, onUpdate, onDelete}) {
 
     const [search, setSearch] = useState("");
 
@@ -32,7 +32,7 @@ function TodoList({todo, onUpdate}) {
       {/* {id, isDone, content, creatDate}  */}
       {/* {id, isDone, content, creatDate} -> props로 TodoItem 컴포넌트에 전달  */}
                 {getSearchResult().map((it) => (
-                    <TodoItem key={it.id} {...it} onUpdate={onUpdate} />                   
+                    <TodoItem key={it.id} {...it} onUpdate={onUpdate} onDelete={onDelete} />                   
                 ))}
             </div>
         </div>

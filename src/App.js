@@ -61,11 +61,16 @@ function App() {
   );
   }
 
+  function onDelete(targetId) {
+    setTodo(todo.filter((it)=>it.id !== targetId));
+    //삭제를 클릭한 id 아이템을 제외한 나머지 할일 리스트를 todo에 저장
+  }
+
   return (
     <div className="App">
       <Header />
       <TodoEditor onCreate={onCreate} />
-      <TodoList todo={todo} onUpdate={onUpdate} />
+      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   );
 }
