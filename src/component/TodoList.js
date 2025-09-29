@@ -11,7 +11,7 @@ function TodoList({todo}) {
       {/* {id, isDone, content, creatDate}  */}
       {/* {id, isDone, content, creatDate} -> props로 TodoItem 컴포넌트에 전달  */}
                 {todo.map((it) => (
-                    <TodoItem {...it} />                   
+                    <TodoItem key={it.id} {...it} />                   
                 ))}
             </div>
         </div>
