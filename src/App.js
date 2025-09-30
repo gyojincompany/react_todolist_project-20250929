@@ -9,7 +9,10 @@ function reducer(state, action) {
   switch (action.type) {
     case "CREATE":
       {return [action.newItem, ...state]}      
-  
+    case "UPDATE":
+      {return state.map((item) => 
+        item.id === action.targetId ? {...item, isDone:!item.isDone} : item
+      )}
     default:
       return state;
   }  
@@ -45,7 +48,7 @@ function App() {
 
   function onCreate(content) { //추가 버튼이 클릭되면 실행될 이벤트 핸들러
     dispatch(
-      {type:"CREATE" ,newItem:{
+      {type:"CREATE", newItem:{
       id: idRef.current, //idRef가 현재 저장하고 있는 값을 불러옴
       content,
       isDone : false,
@@ -56,7 +59,10 @@ function App() {
   };
 
   function onUpdate(targetId) {
-    
+    dispatch({
+      type:"UPDATE",
+      targetId:targetId
+    });
   };
 
   function onDelete(targetId) {
