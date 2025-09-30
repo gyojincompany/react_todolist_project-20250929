@@ -27,3 +27,15 @@
     border-radius: 5px;
     padding: 5px;
 }
+
+.todolist-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+.todolist-table th, 
+.todolist-table td {
+    border: 1px solid red;
+}
+

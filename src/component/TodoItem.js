@@ -20,7 +20,7 @@ function TodoItem({id, content, isDone, createDate, onUpdate, onDelete}) {
             <div className="btn_col">
                 <button onClick={onClickDelete}>삭제</button>
             </div>
-        </div>
+        </div>        
     );
 }
 
