@@ -2,7 +2,7 @@ import './App.css';
 import Header from './component/Header';
 import TodoEditor from './component/TodoEditor';
 import TodoList from './component/TodoList';
-import { useRef, useState, useReducer } from 'react';
+import { useRef, useReducer } from 'react';
 
 function reducer(state, action) {
   //action.type에 따른 동작 switch 문
@@ -13,6 +13,8 @@ function reducer(state, action) {
       {return state.map((item) => 
         item.id === action.targetId ? {...item, isDone:!item.isDone} : item
       )}
+    case "DELETE":
+      {return state.filter((item) => item.id !== action.targetId)}  
     default:
       return state;
   }  
@@ -66,7 +68,10 @@ function App() {
   };
 
   function onDelete(targetId) {
-    
+    dispatch({
+      type:"DELETE",
+      targetId:targetId
+    });
   };
 
   
