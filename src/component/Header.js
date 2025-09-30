@@ -1,4 +1,7 @@
+import React from "react";
+
 function Header() {
+    //console.log("Header 컴포넌트 업데이트!!");
     return (
         <div className="Header">
             <h3>오늘은 📅</h3>
@@ -7,4 +10,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default React.memo(Header); //Header 컴포넌트에 메모이제이션 적용 후 내보내기

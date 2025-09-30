@@ -2,7 +2,7 @@ import './App.css';
 import Header from './component/Header';
 import TodoEditor from './component/TodoEditor';
 import TodoList from './component/TodoList';
-import { useRef, useReducer } from 'react';
+import { useRef, useReducer, useCallback } from 'react';
 
 function reducer(state, action) {
   //action.type에 따른 동작 switch 문
@@ -60,19 +60,19 @@ function App() {
     idRef.current += 1; //newItem->할일 객체를 생성한 후 idRef값을 1증가
   };
 
-  function onUpdate(targetId) {
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type:"UPDATE",
       targetId:targetId
     });
-  };
+  },[]);
 
-  function onDelete(targetId) {
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type:"DELETE",
       targetId:targetId
     });
-  };
+  },[]);
 
   
   return (
