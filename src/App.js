@@ -2,7 +2,12 @@ import './App.css';
 import Header from './component/Header';
 import TodoEditor from './component/TodoEditor';
 import TodoList from './component/TodoList';
-import { useRef, useReducer, useCallback } from 'react';
+import React, { useRef, useReducer, useCallback, useMemo } from 'react';
+
+export const TodoStateContext = React.createContext(); 
+//Todo Context 생성
+export const TodoDispatchContext = React.createContext(); 
+//Dispatch->onCreate, onDelete, onUpdate Context 생성
 
 function reducer(state, action) {
   //action.type에 따른 동작 switch 문
@@ -74,12 +79,20 @@ function App() {
     });
   },[]);
 
+
+  const meoizedDispatches = useMemo(()=>{
+    return {onCreate, onDelete, onUpdate};
+  }, []);
   
   return (
     <div className="App">
       <Header />
-      <TodoEditor onCreate={onCreate} />
-      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />     
+      <TodoStateContext.Provider value={todo}>
+        <TodoDispatchContext.Provider value={meoizedDispatches}>
+          <TodoEditor />
+          <TodoList /> 
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   );
 }

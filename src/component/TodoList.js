@@ -1,8 +1,11 @@
 import "./TodoList.css"
 import TodoItem from "./TodoItem";
-import { useState, useMemo } from "react";
+import { TodoStateContext } from "../App";
+import { useState, useMemo, useContext } from "react";
 
-function TodoList({todo, onUpdate, onDelete}) {
+function TodoList() {
+
+    const todo = useContext(TodoStateContext);    
 
     const [search, setSearch] = useState("");
 
@@ -49,7 +52,7 @@ function TodoList({todo, onUpdate, onDelete}) {
       {/* {id, isDone, content, creatDate}  */}
       {/* {id, isDone, content, creatDate} -> props로 TodoItem 컴포넌트에 전달  */}
                 {getSearchResult().map((it) => (
-                    <TodoItem key={it.id} {...it} onUpdate={onUpdate} onDelete={onDelete} />                   
+                    <TodoItem key={it.id} {...it} />                   
                 ))}
             </div>
         </div>

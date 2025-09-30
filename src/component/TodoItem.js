@@ -1,7 +1,10 @@
 import "./TodoItem.css"
-import React from "react";
+import React, {useContext} from "react";
+import { TodoDispatchContext } from "../App";
 
-function TodoItem({id, content, isDone, createDate, onUpdate, onDelete}) {
+function TodoItem({id, content, isDone, createDate}) {
+
+    const {onUpdate, onDelete} = useContext(TodoDispatchContext); 
 
     console.log(`${id} TodoItem 업데이트 됨!!`);
 
